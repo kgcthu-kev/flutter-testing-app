@@ -28,11 +28,16 @@ class _UsersPageState extends State<UsersPage> {
 
     userList = datas.map((data) => User.fromJson(data)).toList();
 
-    Future.delayed(const Duration(milliseconds: 2000), () {
+    // Future.delayed(const Duration(milliseconds: 2000), () {
+    //   setState(() {
+    //     isLoading = false;
+    //   });
+    // });
+    if (mounted) {
       setState(() {
         isLoading = false;
       });
-    });
+    }
 
     print(userList.length);
   }
@@ -48,7 +53,39 @@ class _UsersPageState extends State<UsersPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('hello world'),
+          title: const Text('Users page'),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) => SimpleDialog(
+                            // <-- SEE HERE
+                            title: const Text('Select Booking Type'),
+                            children: <Widget>[
+                              SimpleDialogOption(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Text('General'),
+                              ),
+                              SimpleDialogOption(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Text('Silver'),
+                              ),
+                              SimpleDialogOption(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Text('Gold'),
+                              ),
+                            ],
+                          ));
+                },
+                icon: const Icon(Icons.tune))
+          ],
         ),
         body: Column(
           children: [

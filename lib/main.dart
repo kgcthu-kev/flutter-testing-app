@@ -5,11 +5,16 @@ void main() {
   runApp(const MainApp());
 }
 
+ThemeData theme = ThemeData(useMaterial3: true);
+
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: HomePage());
+    return MaterialApp(
+      home: const HomePage(),
+      theme: theme,
+    );
   }
 }
